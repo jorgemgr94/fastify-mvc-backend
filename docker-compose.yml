@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4000:80"
+    links:
+      - mongodb-dev
+    environment:
+      - MONGO_DATABASE=pets
+      - MONGO_USER=admin
+      - MONGO_PASSWORD=admin
+      - MONGO_HOST=mongodb-dev
+    depends_on:
+      -  mongodb-dev
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+  mongodb-dev:
+    image: mongo:5.0.13
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    ports:
+      - "27017:27017"
+    logging:
+      driver: none

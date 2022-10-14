@@ -17,7 +17,7 @@ export class PetsBackendApp {
 		this.registerRoutes();
 
 		const API_PORT = Number(process.env.API_PORT) || 5000;
-		await this.server.listen({ port: API_PORT });
+		await this.server.listen({ port: API_PORT, host: '0.0.0.0' });
 		console.log(`Server started on port ${API_PORT}`);
 	}
 
