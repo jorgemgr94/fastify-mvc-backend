@@ -1,14 +1,14 @@
-import { getModelForClass, ModelOptions, prop } from "@typegoose/typegoose";
+import { getModelForClass, ModelOptions, prop } from '@typegoose/typegoose';
 
 enum PetGender {
-  MALE = "male",
-  FEMALE = "female"
+  MALE = 'male',
+  FEMALE = 'female'
 }
 
 @ModelOptions({
   schemaOptions: {
-    timestamps: true,
-  },
+    timestamps: true
+  }
 })
 export class Pet {
   @prop({ type: String, trim: true, required: true })
