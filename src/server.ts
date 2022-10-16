@@ -6,10 +6,6 @@ export class PetsBackendApp {
 	server: FastifyInstance;
 
 	async start() {
-		await this.startHttp();
-	}
-
-	async startHttp() {
 		this.server = fastify({
 			logger: true
 		});
@@ -17,11 +13,12 @@ export class PetsBackendApp {
 		this.registerRoutes();
 
 		const API_PORT = Number(process.env.API_PORT) || 5000;
-		await this.server.listen({ port: API_PORT, host: '0.0.0.0' });
-		console.log(`Server started on port ${API_PORT}`);
+
+		console.log(`Server starting on port ${API_PORT}`);
+		return await this.server.listen({ port: API_PORT, host: '0.0.0.0' });
 	}
 
-	async stopHttp() {
+	async stop() {
 		await this.server.close();
 	}
 

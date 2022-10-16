@@ -16,4 +16,12 @@ export class MongoDB {
 			throw Error(`Can't connect to database server ${error}`);
 		}
 	}
+
+	async stop() {
+		try {
+			await this.mongoConnection.disconnect();
+		} catch (error) {
+			throw Error(`Can't disconnect from database server ${error}`);
+		}
+	}
 }
