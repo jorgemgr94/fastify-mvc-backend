@@ -26,5 +26,6 @@ steps:
         'managed',
         '--port',
         '80',
+        '--update-secrets=REDIS_URI=REDIS_URI:1',
         '--allow-unauthenticated'
       ]
