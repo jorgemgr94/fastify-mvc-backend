@@ -5,13 +5,13 @@ steps:
       [
         'build',
         '-t',
-        'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$BRANCH_NAME',
+        '$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$BRANCH_NAME',
         '.'
       ]
   # Push the image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$BRANCH_NAME']
+      ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$BRANCH_NAME']
   # Manual Deploy image to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
@@ -20,7 +20,7 @@ steps:
         'deploy',
         '$REPO_NAME-$BRANCH_NAME',
         '--image',
-        'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$BRANCH_NAME',
+        '$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$BRANCH_NAME',
         '--region',
         '$LOCATION',
         '--platform',
@@ -32,4 +32,4 @@ steps:
         '--allow-unauthenticated'
       ]
 images:
-  - 'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$BRANCH_NAME'
+  - '$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$BRANCH_NAME'
