@@ -6,9 +6,7 @@ export class PetsBackendApp {
 	server: FastifyInstance;
 
 	async start() {
-		this.server = fastify({
-			logger: true
-		});
+		this.server = fastify();
 
 		this.registerRoutes();
 
