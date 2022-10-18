@@ -12,10 +12,13 @@ export class PetsBackendApp {
 
 		this.registerRoutes();
 
-		const API_PORT = Number(process.env.API_PORT) || 5000;
+		const API_PORT = process.env.API_PORT;
 
 		console.log(`Server starting on port ${API_PORT}`);
-		return await this.server.listen({ port: API_PORT, host: '0.0.0.0' });
+		return await this.server.listen({
+			port: Number(API_PORT),
+			host: '0.0.0.0'
+		});
 	}
 
 	async stop() {
