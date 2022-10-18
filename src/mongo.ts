@@ -9,6 +9,7 @@ export class MongoDB {
 			const mongooseOptions: ConnectOptions = {};
 
 			this.mongoConnection = await connect(MONGODB_URI!, mongooseOptions);
+
 			console.log(
 				`Mongodb connected to: ${this.mongoConnection.connection.name}`
 			);
